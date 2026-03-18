@@ -7,6 +7,7 @@ if (!defined('ABSPATH')) {
 $bsn_racing_includes = [
     '/inc/setup.php',
     '/inc/enqueue.php',
+    '/inc/post-types.php',
 ];
 
 foreach ($bsn_racing_includes as $bsn_racing_file) {
