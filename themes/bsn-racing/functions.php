@@ -8,6 +8,7 @@ $bsn_racing_includes = [
     '/inc/setup.php',
     '/inc/enqueue.php',
     '/inc/post-types.php',
+    '/inc/acf-fields.php',
 ];
 
 foreach ($bsn_racing_includes as $bsn_racing_file) {
