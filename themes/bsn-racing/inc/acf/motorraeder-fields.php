@@ -4,7 +4,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-function bsn_racing_register_acf_fields(): void
+function bsn_racing_register_motorraeder_acf_fields(): void
 {
     if (!function_exists('acf_add_local_field_group')) {
         return;
@@ -123,4 +123,4 @@ function bsn_racing_register_acf_fields(): void
     ]);
 }
 
-add_action('acf/init', 'bsn_racing_register_acf_fields');
+add_action('acf/init', 'bsn_racing_register_motorraeder_acf_fields');

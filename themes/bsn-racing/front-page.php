@@ -1,4 +1,22 @@
-<?php get_header(); ?>
+<?php
+get_header();
+
+$featured_models = new WP_Query([
+    'post_type' => 'motorraeder',
+    'posts_per_page' => 2,
+]);
+
+$secondary_models = new WP_Query([
+    'post_type' => 'motorraeder',
+    'posts_per_page' => 3,
+    'offset' => 2,
+]);
+
+$latest_news = new WP_Query([
+    'post_type' => 'post',
+    'posts_per_page' => 2,
+]);
+?>
 
 <main class="site-main">
   <section class="hero-section">
@@ -37,25 +55,45 @@
         <h2>Adventure Spirit mit Rally-DNA.</h2>
       </div>
 
-      <div class="product-grid product-grid--two">
-        <article class="product-card">
-          <div class="image-tile image-tile--bike-red"></div>
-          <div class="product-card__body">
-            <h3>450 Rally</h3>
-            <p>Extrem leichte Rally-Maschine fuer Enduro, Roadbook und echte Fernreise-Abenteuer.</p>
-            <a class="text-link text-link--accent" href="<?php echo esc_url(home_url('/kove/450-rally/')); ?>">Mehr erfahren</a>
-          </div>
-        </article>
-
-        <article class="product-card">
-          <div class="image-tile image-tile--bike-black"></div>
-          <div class="product-card__body">
-            <h3>800X Rally</h3>
-            <p>Adventure Bike mit Offroad-Fokus, grossem Auftritt und Setup fuer lange Etappen.</p>
-            <a class="text-link text-link--accent" href="<?php echo esc_url(home_url('/kove/800x-rally/')); ?>">Mehr erfahren</a>
-          </div>
-        </article>
-      </div>
+      <?php if ($featured_models->have_posts()) : ?>
+        <div class="product-grid product-grid--two">
+          <?php while ($featured_models->have_posts()) : $featured_models->the_post(); ?>
+            <?php
+            $price = function_exists('get_field') ? (string) get_field('price') : '';
+            $subtitle = function_exists('get_field') ? (string) get_field('subtitle') : '';
+            ?>
+            <article <?php post_class('product-card'); ?>>
+              <a class="product-card__media" href="<?php the_permalink(); ?>">
+                <?php if (has_post_thumbnail()) : ?>
+                  <?php the_post_thumbnail('large'); ?>
+                <?php else : ?>
+                  <div class="image-tile image-tile--bike-red"></div>
+                <?php endif; ?>
+              </a>
+              <div class="product-card__body">
+                <h3><?php the_title(); ?></h3>
+                <p><?php echo esc_html($subtitle ?: get_the_excerpt() ?: wp_trim_words(get_the_content(), 20)); ?></p>
+                <?php if ($price) : ?>
+                  <p class="product-card__price"><?php echo esc_html($price); ?></p>
+                <?php endif; ?>
+                <a class="text-link text-link--accent" href="<?php the_permalink(); ?>">Mehr erfahren</a>
+              </div>
+            </article>
+          <?php endwhile; ?>
+        </div>
+        <?php wp_reset_postdata(); ?>
+      <?php else : ?>
+        <div class="product-grid product-grid--two">
+          <article class="product-card">
+            <div class="image-tile image-tile--bike-red"></div>
+            <div class="product-card__body">
+              <h3>450 Rally</h3>
+              <p>Lege jetzt die ersten Motorrader im Admin an, damit die Startseite automatisch befuellt wird.</p>
+              <a class="text-link text-link--accent" href="<?php echo esc_url(get_post_type_archive_link('motorraeder')); ?>">Alle Modelle</a>
+            </div>
+          </article>
+        </div>
+      <?php endif; ?>
     </div>
   </section>
 
@@ -67,21 +105,26 @@
       </div>
 
       <div class="product-grid">
-        <article class="product-card product-card--light">
-          <div class="image-tile image-tile--desert"></div>
-          <div class="product-card__body">
-            <h3>800X Pro</h3>
-            <p>Die ausgewogene Variante zwischen Alltag, Schotter und Reisetauglichkeit.</p>
-          </div>
-        </article>
-
-        <article class="product-card product-card--light">
-          <div class="image-tile image-tile--green"></div>
-          <div class="product-card__body">
-            <h3>V 525 DSX</h3>
-            <p>Zweizylinder mit sportlichem Charakter und auffaelligem Auftritt.</p>
-          </div>
-        </article>
+        <?php if ($secondary_models->have_posts()) : ?>
+          <?php while ($secondary_models->have_posts()) : $secondary_models->the_post(); ?>
+            <?php $subtitle = function_exists('get_field') ? (string) get_field('subtitle') : ''; ?>
+            <article <?php post_class('product-card product-card--light'); ?>>
+              <a class="product-card__media" href="<?php the_permalink(); ?>">
+                <?php if (has_post_thumbnail()) : ?>
+                  <?php the_post_thumbnail('large'); ?>
+                <?php else : ?>
+                  <div class="image-tile image-tile--desert"></div>
+                <?php endif; ?>
+              </a>
+              <div class="product-card__body">
+                <h3><?php the_title(); ?></h3>
+                <p><?php echo esc_html($subtitle ?: get_the_excerpt() ?: wp_trim_words(get_the_content(), 18)); ?></p>
+                <a class="text-link" href="<?php the_permalink(); ?>">Details ansehen</a>
+              </div>
+            </article>
+          <?php endwhile; ?>
+          <?php wp_reset_postdata(); ?>
+        <?php endif; ?>
 
         <article class="product-card product-card--light product-card--text">
           <div class="product-card__body">
@@ -91,7 +134,7 @@
               Neben den Bikes bleiben Probefahrten, News und gefuehrte Touren zentrale Elemente
               der Startseite. Genau das bildet auch der Screenshot sichtbar ab.
             </p>
-            <a class="button button--primary" href="<?php echo esc_url(home_url('/touren/')); ?>">Touren ansehen</a>
+            <a class="button button--primary" href="<?php echo esc_url(get_post_type_archive_link('motorraeder')); ?>">Alle Modelle</a>
           </div>
         </article>
       </div>
@@ -105,27 +148,43 @@
         <h2>News aus Werkstatt, Szene und Saisonstart.</h2>
       </div>
 
-      <div class="news-grid">
-        <article class="news-card news-card--highlight">
-          <div class="news-card__media news-card__media--stat">
-            <span>300</span>
-          </div>
-          <div class="news-card__body">
-            <p class="news-card__meta">Community</p>
-            <h3>300-mal Danke</h3>
-            <p>Ein aufmerksamkeitsstarker Statistik-Teaser wie im Screenshot funktioniert hier gut als erster News-Block.</p>
-          </div>
-        </article>
-
-        <article class="news-card">
-          <div class="news-card__media image-tile image-tile--news"></div>
-          <div class="news-card__body">
-            <p class="news-card__meta">Modelle 2026</p>
-            <h3>Neue Bikes sind eingetroffen</h3>
-            <p>Lieferung, Erstaufbau und Verfuegbarkeit werden auf der Startseite direkt sichtbar gemacht.</p>
-          </div>
-        </article>
-      </div>
+      <?php if ($latest_news->have_posts()) : ?>
+        <div class="news-grid">
+          <?php $news_index = 0; ?>
+          <?php while ($latest_news->have_posts()) : $latest_news->the_post(); ?>
+            <article <?php post_class('news-card' . (0 === $news_index ? ' news-card--highlight' : '')); ?>>
+              <a class="news-card__media<?php echo has_post_thumbnail() ? '' : ' image-tile image-tile--news'; ?>" href="<?php the_permalink(); ?>">
+                <?php if (has_post_thumbnail()) : ?>
+                  <?php the_post_thumbnail('large'); ?>
+                <?php elseif (0 === $news_index) : ?>
+                  <span class="news-card__media news-card__media--stat"><span><?php echo esc_html(get_the_date('d')); ?></span></span>
+                <?php endif; ?>
+              </a>
+              <div class="news-card__body">
+                <p class="news-card__meta"><?php echo esc_html(get_the_date('d.m.Y')); ?></p>
+                <h3><?php the_title(); ?></h3>
+                <p><?php echo esc_html(get_the_excerpt() ?: wp_trim_words(get_the_content(), 24)); ?></p>
+                <a class="text-link" href="<?php the_permalink(); ?>">Beitrag lesen</a>
+              </div>
+            </article>
+            <?php $news_index++; ?>
+          <?php endwhile; ?>
+        </div>
+        <?php wp_reset_postdata(); ?>
+      <?php else : ?>
+        <div class="news-grid">
+          <article class="news-card news-card--highlight">
+            <div class="news-card__media news-card__media--stat">
+              <span>BSN</span>
+            </div>
+            <div class="news-card__body">
+              <p class="news-card__meta">Aktuelles</p>
+              <h3>News-Bereich ist vorbereitet</h3>
+              <p>Lege im WordPress-Admin die ersten Beitraege an, dann erscheint dieser Bereich automatisch mit echten Inhalten.</p>
+            </div>
+          </article>
+        </div>
+      <?php endif; ?>
     </div>
   </section>
 
