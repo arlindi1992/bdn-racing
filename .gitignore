@@ -1,0 +1,7 @@
+README.md
+READMECLIENT.md
+
+debug.log
+uploads/
+*.Zone.Identifier
+.DS_Store
