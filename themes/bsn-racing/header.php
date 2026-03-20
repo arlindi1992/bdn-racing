@@ -9,36 +9,32 @@
 <?php wp_body_open(); ?>
 <header class="site-header">
   <div class="bsn-container site-header__inner">
-    <div class="site-branding">
-      <a href="<?php echo esc_url(home_url('/')); ?>">
-        <span class="site-branding__mark">BSN</span>
-        <span class="site-branding__text">Racing</span>
-      </a>
+    <div class="site-header__top">
+      <div class="site-branding">
+        <a href="<?php echo esc_url(home_url('/')); ?>">
+          <img
+            class="site-branding__logo"
+            src="<?php echo esc_url(get_template_directory_uri() . '/assets/img/navbar/bsn-racing-logo.png'); ?>"
+            alt="<?php echo esc_attr(get_bloginfo('name')); ?>"
+          >
+          <span class="screen-reader-text"><?php bloginfo('name'); ?></span>
+        </a>
+      </div>
+
+      <button
+        class="site-navigation__menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="site-navigation-menu"
+        aria-label="<?php esc_attr_e('Open menu', 'bsn-racing'); ?>"
+      >
+        <span class="site-navigation__menu-toggle-line"></span>
+        <span class="site-navigation__menu-toggle-line"></span>
+        <span class="site-navigation__menu-toggle-line"></span>
+      </button>
     </div>
 
-    <nav class="site-navigation" aria-label="<?php esc_attr_e('Primary navigation', 'bsn-racing'); ?>">
-      <?php
-      wp_nav_menu([
-          'theme_location' => 'primary',
-          'container' => false,
-          'menu_class' => 'site-navigation__menu',
-          'fallback_cb' => static function (): void {
-              ?>
-              <ul class="site-navigation__menu">
-                <li><a href="<?php echo esc_url(home_url('/')); ?>">Home</a></li>
-                <li><a href="<?php echo esc_url(home_url('/motorraeder/')); ?>">Motorraeder</a></li>
-                <li><a href="<?php echo esc_url(home_url('/touren/')); ?>">Touren</a></li>
-                <li><a href="<?php echo esc_url(home_url('/news/')); ?>">News</a></li>
-                <li><a href="<?php echo esc_url(home_url('/kontakt/')); ?>">Kontakt</a></li>
-              </ul>
-              <?php
-          },
-      ]);
-      ?>
-    </nav>
-
-    <a class="site-header__cta" href="<?php echo esc_url(home_url('/probefahrt/')); ?>">
-      Probefahrt
-    </a>
+    <?php get_template_part('template-parts/header/navbar'); ?>
+    <?php get_template_part('template-parts/header/brands-strip'); ?>
   </div>
 </header>
