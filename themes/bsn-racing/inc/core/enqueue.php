@@ -39,6 +39,14 @@ function bsn_racing_assets(): void
         $theme->get('Version'),
         true
     );
+
+    wp_enqueue_script(
+        'bsn-racing-hero',
+        get_template_directory_uri() . '/assets/js/hero.js',
+        ['bsn-racing-main'],
+        $theme->get('Version'),
+        true
+    );
 }
 
 add_action('wp_enqueue_scripts', 'bsn_racing_assets');
