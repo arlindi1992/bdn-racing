@@ -52,7 +52,7 @@
                         <?php if (has_post_thumbnail()) : ?>
                           <?php the_post_thumbnail('large'); ?>
                         <?php else : ?>
-                          <span class="inventory-card__placeholder">BSN</span>
+                          <span class="inventory-card__placeholder">Off Road Shop Metzler</span>
                         <?php endif; ?>
                       </a>
                       <div class="inventory-card__body">
@@ -80,7 +80,7 @@
                 <?php if (has_post_thumbnail()) : ?>
                   <?php the_post_thumbnail('large'); ?>
                 <?php else : ?>
-                  <span class="inventory-card__placeholder">BSN</span>
+                  <span class="inventory-card__placeholder">Off Road Shop Metzler</span>
                 <?php endif; ?>
               </a>
               <div class="inventory-card__body">

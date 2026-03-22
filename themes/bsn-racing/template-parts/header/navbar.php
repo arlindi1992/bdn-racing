@@ -12,7 +12,7 @@
               <a href="<?php echo esc_url(home_url('/news/')); ?>">News</a>
             </li>
             <li class="menu-item menu-item-has-children">
-              <a href="<?php echo esc_url(home_url('/offroad-shop-metzler/')); ?>">BSN</a>
+              <a href="<?php echo esc_url(home_url('/offroad-shop-metzler/')); ?>">Off Road Shop Metzler</a>
               <ul class="sub-menu">
                 <li><a href="<?php echo esc_url(home_url('/serviceanfrage/')); ?>">Serviceanfrage</a></li>
                 <li><a href="<?php echo esc_url(home_url('/fotos/')); ?>">Fotos</a></li>

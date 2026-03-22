@@ -9,7 +9,7 @@
 .site-footer {
   position: relative;
   padding: 3rem 0 1.5rem;
-  background: #fff;
+  background: var(--bsn-color-bg);
   border-top: 1px solid var(--bsn-color-border);
   overflow: hidden;
   isolation: isolate;

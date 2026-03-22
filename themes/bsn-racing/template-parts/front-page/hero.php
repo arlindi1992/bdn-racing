@@ -6,7 +6,7 @@ $hero_slides = $args['hero_slides'] ?? [];
   <?php if (!empty($hero_slides)) : ?>
     <?php
     $initial_slide = $hero_slides[0];
-    $initial_slide_title = !empty($initial_slide['title']) ? (string) $initial_slide['title'] : 'BSN RACING GERMANY';
+    $initial_slide_title = !empty($initial_slide['title']) ? (string) $initial_slide['title'] : 'Off Road Shop Metzler';
     $initial_slide_subtitle = !empty($initial_slide['subtitle']) ? (string) $initial_slide['subtitle'] : 'Deine Adresse fuer KOVE Motorrader in Bayern.';
     ?>
     <div class="hero-section__media" data-hero-carousel>
@@ -15,7 +15,7 @@ $hero_slides = $args['hero_slides'] ?? [];
           <?php
           $slide_image = $slide['image'] ?? [];
           $slide_image_url = (string) ($slide['image_url'] ?? '');
-          $slide_title = !empty($slide['title']) ? (string) $slide['title'] : 'BSN RACING GERMANY';
+          $slide_title = !empty($slide['title']) ? (string) $slide['title'] : 'Off Road Shop Metzler';
           $slide_subtitle = !empty($slide['subtitle']) ? (string) $slide['subtitle'] : 'Deine Adresse fuer KOVE Motorrader in Bayern.';
           $slide_alt = is_array($slide_image) && !empty($slide_image['alt']) ? (string) $slide_image['alt'] : $slide_title;
           ?>

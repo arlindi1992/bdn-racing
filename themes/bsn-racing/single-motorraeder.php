@@ -63,7 +63,7 @@
         ],
         [
             'question' => __('Gibt es Service und Ersatzteile?', 'bsn-racing'),
-            'answer' => __('BSN Racing kombiniert Fahrzeugverkauf mit Werkstatt, Beratung und laufender Betreuung.', 'bsn-racing'),
+            'answer' => __('Off Road Shop Metzler kombiniert Fahrzeugverkauf mit Werkstatt, Beratung und laufender Betreuung.', 'bsn-racing'),
         ],
     ];
 
@@ -103,7 +103,7 @@
               <?php if ($hero_image_id) : ?>
                 <?php echo wp_get_attachment_image($hero_image_id, 'large'); ?>
               <?php else : ?>
-                <div class="vehicle-detail-hero__placeholder">BSN Racing</div>
+                <div class="vehicle-detail-hero__placeholder">Off Road Shop Metzler</div>
               <?php endif; ?>
             </div>
 
@@ -122,7 +122,7 @@
             <?php if ($hero_image_id) : ?>
               <?php echo wp_get_attachment_image($hero_image_id, 'large'); ?>
             <?php else : ?>
-              <div class="vehicle-detail-hero__placeholder">BSN Racing</div>
+              <div class="vehicle-detail-hero__placeholder">Off Road Shop Metzler</div>
             <?php endif; ?>
           </div>
         </div>
@@ -332,7 +332,7 @@
                   <?php if (has_post_thumbnail()) : ?>
                     <?php the_post_thumbnail('large'); ?>
                   <?php else : ?>
-                    <span class="inventory-card__placeholder">BSN</span>
+                    <span class="inventory-card__placeholder">Off Road Shop Metzler</span>
                   <?php endif; ?>
                 </a>
                 <div class="inventory-card__body">

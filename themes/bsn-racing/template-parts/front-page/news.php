@@ -36,7 +36,7 @@ $latest_news = $args['latest_news'] ?? null;
       <div class="news-grid">
         <article class="news-card news-card--highlight">
           <div class="news-card__media news-card__media--stat">
-            <span>BSN</span>
+            <span>Off Road Shop Metzler</span>
           </div>
           <div class="news-card__body">
             <p class="news-card__meta">Aktuelles</p>

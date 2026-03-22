@@ -161,7 +161,7 @@ function bsn_racing_seed_primary_menu(): void
         ],
         [
             'key' => 'bsn',
-            'title' => 'BSN',
+            'title' => 'Off Road Shop Metzler',
             'url' => '/offroad-shop-metzler/',
             'children' => [
                 [
