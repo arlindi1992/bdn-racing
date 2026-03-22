@@ -11,14 +11,18 @@
   <div class="bsn-container site-header__inner">
     <div class="site-header__top">
       <div class="site-branding">
-        <a href="<?php echo esc_url(home_url('/')); ?>">
-          <img
-            class="site-branding__logo"
-            src="<?php echo esc_url(get_template_directory_uri() . '/assets/img/navbar/bsn-racing-logo.png'); ?>"
-            alt="<?php echo esc_attr(get_bloginfo('name')); ?>"
-          >
-          <span class="screen-reader-text"><?php bloginfo('name'); ?></span>
-        </a>
+        <?php if (function_exists('the_custom_logo') && has_custom_logo()) : ?>
+          <?php the_custom_logo(); ?>
+        <?php else : ?>
+          <a href="<?php echo esc_url(home_url('/')); ?>">
+            <img
+              class="site-branding__logo"
+              src="<?php echo esc_url(get_template_directory_uri() . '/assets/img/navbar/bsn-racing-logo.png'); ?>"
+              alt="<?php echo esc_attr(get_bloginfo('name')); ?>"
+            >
+            <span class="screen-reader-text"><?php bloginfo('name'); ?></span>
+          </a>
+        <?php endif; ?>
       </div>
 
       <button

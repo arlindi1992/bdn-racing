@@ -1,6 +1,5 @@
 .site-header {
-  position: sticky;
-  top: 0;
+  position: relative;
   z-index: 10;
   padding: 0.75rem 0;
   background: rgba(255, 255, 255, 0.95);
@@ -12,7 +11,7 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 0.75rem;
+  gap: 0.5rem;
 }
 
 .site-header__top {
@@ -34,6 +33,11 @@
   gap: 0.45rem;
 }
 
+.site-branding .custom-logo-link {
+  display: inline-flex;
+  align-items: center;
+}
+
 .site-branding__mark {
   padding: 0.35rem 0.55rem;
   color: #fff;
@@ -47,6 +51,14 @@
 .site-branding__logo {
   width: auto;
   height: 64px;
+  object-fit: contain;
+}
+
+.site-branding .custom-logo {
+  width: auto;
+  max-width: 220px;
+  height: 64px;
+  max-height: 64px;
   object-fit: contain;
 }
 
@@ -337,7 +349,6 @@
 
   .brands-strip {
     width: 100%;
-    padding-top: 0.5rem;
     overflow-x: auto;
   }
 
@@ -345,6 +356,10 @@
     min-width: 116px;
     min-height: 52px;
   }
+
+  .site-header__inner {
+  gap: 0.1rem;
+}
 }
 
 @media (max-width: 680px) {
@@ -373,22 +388,36 @@
 
 @media (min-width: 961px) {
   .site-header__inner {
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: minmax(220px, auto) minmax(0, 1fr);
+    grid-template-areas:
+      "top nav"
+      "brands brands";
     align-items: center;
-    justify-content: space-between;
+    column-gap: 2rem;
+    row-gap: 0.9rem;
   }
 
   .site-header__top {
-    display: contents;
+    grid-area: top;
+    width: 100%;
   }
 
   .site-navigation {
+    grid-area: nav;
+    width: 100%;
+    max-width: max-content;
     margin-left: auto;
   }
 
+  .site-navigation__menu {
+    justify-content: flex-end;
+    align-items: center;
+  }
+
   .brands-strip {
+    grid-area: brands;
     width: 100%;
-    margin-top: 0.15rem;
+    margin-top: 0;
   }
 }
