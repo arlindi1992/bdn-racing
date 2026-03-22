@@ -25,6 +25,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const itemsWithChildren = navigation.querySelectorAll('.menu-item-has-children');
 
+  const updateSubmenuAlignment = () => {
+    if (window.innerWidth <= 960) {
+      itemsWithChildren.forEach((item) => item.classList.remove('submenu-align-right'));
+      return;
+    }
+
+    itemsWithChildren.forEach((item) => {
+      const submenu = item.querySelector(':scope > .sub-menu');
+
+      if (!submenu) {
+        return;
+      }
+
+      item.classList.remove('submenu-align-right');
+
+      const submenuRect = submenu.getBoundingClientRect();
+
+      if (submenuRect.right > window.innerWidth - 16) {
+        item.classList.add('submenu-align-right');
+      }
+    });
+  };
+
   itemsWithChildren.forEach((item, index) => {
     const link = item.querySelector(':scope > a');
     const submenu = item.querySelector(':scope > .sub-menu');
@@ -70,9 +93,12 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!isOpen) {
         item.classList.add('is-open');
         toggle.setAttribute('aria-expanded', 'true');
+        updateSubmenuAlignment();
       }
     });
   });
+
+  updateSubmenuAlignment();
 
   document.addEventListener('click', (event) => {
     if (navigation.contains(event.target) || (menuToggle && menuToggle.contains(event.target))) {
@@ -97,6 +123,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   window.addEventListener('resize', () => {
+    updateSubmenuAlignment();
+
     if (window.innerWidth > 960) {
       navigation.classList.remove('is-open');
 

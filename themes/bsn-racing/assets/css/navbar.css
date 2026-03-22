@@ -195,6 +195,11 @@
   z-index: 20;
 }
 
+.site-navigation li.submenu-align-right > .sub-menu {
+  left: auto;
+  right: 0;
+}
+
 .site-navigation .sub-menu a {
   display: block;
   padding: 0.6rem 1rem;
