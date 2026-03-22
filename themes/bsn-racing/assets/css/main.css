@@ -55,7 +55,6 @@ img {
   margin: 0 auto;
 }
 
-.site-footer__menu,
 .hero-section__facts {
   margin: 0;
   padding: 0;
@@ -87,32 +86,12 @@ img {
   min-height: 60vh;
 }
 
-.site-footer {
-  position: relative;
-  padding: 3rem 0 1.5rem;
-  background: #fff;
-  border-top: 1px solid var(--bsn-color-border);
-  overflow: hidden;
-  isolation: isolate;
-}
-
-.site-footer .bsn-container {
-  position: relative;
-  z-index: 1;
-}
-
-.site-footer__grid,
 .intro-section__grid,
 .news-grid {
   display: grid;
   gap: 2rem;
 }
 
-.site-footer__grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.site-footer__eyebrow,
 .section-kicker,
 .hero-section__label,
 .model-card__tag,
@@ -123,81 +102,6 @@ img {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--bsn-color-accent);
-}
-
-.site-footer__menu {
-  display: grid;
-  gap: 0.5rem;
-}
-
-.site-footer__bottom {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: start;
-  gap: 1rem;
-  padding-top: 1.5rem;
-  margin-top: 2rem;
-  border-top: 1px solid var(--bsn-color-border);
-  z-index: 1;
-}
-
-.site-footer__bottom-right {
-  display: grid;
-  gap: 0.6rem;
-  justify-items: end;
-}
-
-.site-footer__copyright {
-  grid-column: 1 / -1;
-  text-align: center;
-}
-
-.site-footer__copyright p {
-  margin: 0;
-}
-
-.site-footer::after {
-  content: "";
-  position: absolute;
-  right: -9rem;
-  bottom: -9rem;
-  width: 14rem;
-  height: 28rem;
-  aspect-ratio: 1;
-  background: var(--bsn-color-teal);
-  transform: rotate(20deg);
-  z-index: 0;
-}
-
-.site-footer__legal {
-  display: flex;
-  gap: 1rem;
-}
-
-.site-footer__brands {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  gap: 0.9rem;
-  flex: 1 1 auto;
-}
-
-.site-footer__brand {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 42px;
-  background: rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-.site-footer__brand img {
-  width: auto;
-  max-width: 92px;
-  max-height: 26px;
-  object-fit: contain;
 }
 
 .section-kicker--light {
@@ -677,25 +581,10 @@ img {
 }
 
 @media (max-width: 960px) {
-  .site-footer__bottom {
-    grid-template-columns: 1fr;
-    align-items: center;
-  }
-
-  .site-footer__bottom-right {
-    justify-items: center;
-    text-align: center;
-  }
-
-  .site-footer__brands {
-    justify-content: center;
-  }
-
   .intro-section__grid,
   .product-grid,
   .news-grid,
   .news-card,
-  .site-footer__grid,
   .features-grid,
   .inventory-grid,
   .vehicle-hero__grid,
@@ -713,11 +602,6 @@ img {
 }
 
 @media (max-width: 680px) {
-  .site-footer__legal {
-    flex-direction: column;
-    align-items: center;
-  }
-
   .hero-section {
     min-height: 440px;
     padding-bottom: 4rem;

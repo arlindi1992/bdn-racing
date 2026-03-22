@@ -24,6 +24,13 @@ function bsn_racing_assets(): void
         $theme->get('Version')
     );
 
+    wp_enqueue_style(
+        'bsn-racing-footer',
+        get_template_directory_uri() . '/assets/css/footer.css',
+        ['bsn-racing-main'],
+        $theme->get('Version')
+    );
+
     wp_enqueue_script(
         'bsn-racing-navbar',
         get_template_directory_uri() . '/assets/js/navbar.js',
