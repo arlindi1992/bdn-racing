@@ -72,6 +72,17 @@
     </div>
   </div>
 </footer>
+<div class="lightbox" data-lightbox hidden>
+  <div class="lightbox__backdrop" data-lightbox-backdrop></div>
+  <div class="lightbox__dialog" role="dialog" aria-modal="true" aria-label="<?php esc_attr_e('Image viewer', 'bsn-racing'); ?>">
+    <button class="lightbox__close" type="button" data-lightbox-close aria-label="<?php esc_attr_e('Close image viewer', 'bsn-racing'); ?>">×</button>
+    <button class="lightbox__nav lightbox__nav--prev" type="button" data-lightbox-prev aria-label="<?php esc_attr_e('Previous image', 'bsn-racing'); ?>">‹</button>
+    <figure class="lightbox__figure">
+      <img src="" alt="" data-lightbox-image>
+    </figure>
+    <button class="lightbox__nav lightbox__nav--next" type="button" data-lightbox-next aria-label="<?php esc_attr_e('Next image', 'bsn-racing'); ?>">›</button>
+  </div>
+</div>
 <?php wp_footer(); ?>
 </body>
 </html>
