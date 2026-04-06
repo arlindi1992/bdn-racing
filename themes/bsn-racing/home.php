@@ -4,8 +4,8 @@
   <section class="news-page__hero">
     <div class="bsn-container">
       <p class="section-kicker">Aktuelles</p>
-      <h1><?php the_archive_title(); ?></h1>
-      <div class="news-page__intro"><?php the_archive_description(); ?></div>
+      <h1><?php echo esc_html(get_the_title((int) get_option('page_for_posts')) ?: __('News', 'bsn-racing')); ?></h1>
+      <p class="news-page__intro"><?php esc_html_e('Neuigkeiten aus Werkstatt, Szene, Service und Saisonstart.', 'bsn-racing'); ?></p>
     </div>
   </section>
 

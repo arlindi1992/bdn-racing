@@ -31,10 +31,44 @@ function bsn_racing_assets(): void
         $theme->get('Version')
     );
 
+    wp_enqueue_style(
+        'bsn-racing-lightbox',
+        get_template_directory_uri() . '/assets/css/lightbox.css',
+        ['bsn-racing-main'],
+        $theme->get('Version')
+    );
+
     if (is_page()) {
         wp_enqueue_style(
             'bsn-racing-page',
             get_template_directory_uri() . '/assets/css/page.css',
+            ['bsn-racing-main'],
+            $theme->get('Version')
+        );
+    }
+
+    if (is_home() || is_archive()) {
+        wp_enqueue_style(
+            'bsn-racing-news',
+            get_template_directory_uri() . '/assets/css/news.css',
+            ['bsn-racing-main'],
+            $theme->get('Version')
+        );
+    }
+
+    if (is_singular('motorraeder')) {
+        wp_enqueue_style(
+            'bsn-racing-vehicle-single',
+            get_template_directory_uri() . '/assets/css/vehicle-single.css',
+            ['bsn-racing-main'],
+            $theme->get('Version')
+        );
+    }
+
+    if (is_single() && !is_singular('motorraeder')) {
+        wp_enqueue_style(
+            'bsn-racing-single',
+            get_template_directory_uri() . '/assets/css/single.css',
             ['bsn-racing-main'],
             $theme->get('Version')
         );
