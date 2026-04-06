@@ -21,8 +21,8 @@
             <li class="menu-item menu-item-has-children">
               <a href="<?php echo esc_url(home_url('/motorraeder/')); ?>">Motorraeder</a>
               <ul class="sub-menu">
-                <li><a href="<?php echo esc_url(home_url('/motorraeder/neu/')); ?>">Neu</a></li>
-                <li><a href="<?php echo esc_url(home_url('/motorraeder/occasion/')); ?>">Occasion</a></li>
+                <li><a href="<?php echo esc_url(home_url('/zustand/neu/')); ?>">Neu</a></li>
+                <li><a href="<?php echo esc_url(home_url('/zustand/occasion/')); ?>">Occasion</a></li>
               </ul>
             </li>
             <li class="menu-item menu-item-has-children">

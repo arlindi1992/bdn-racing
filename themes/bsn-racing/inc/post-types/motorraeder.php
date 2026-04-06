@@ -58,3 +58,54 @@ function bsn_racing_register_motorraeder_taxonomy(): void
 }
 
 add_action('init', 'bsn_racing_register_motorraeder_taxonomy');
+
+function bsn_racing_vehicle_condition_term_link(string $termlink, WP_Term $term, string $taxonomy): string
+{
+    if ('vehicle_condition' !== $taxonomy) {
+        return $termlink;
+    }
+
+    return home_url(user_trailingslashit('motorraeder/' . $term->slug));
+}
+
+add_filter('term_link', 'bsn_racing_vehicle_condition_term_link', 10, 3);
+
+function bsn_racing_route_vehicle_condition_archive(array $query_vars): array
+{
+    if (is_admin()) {
+        return $query_vars;
+    }
+
+    $slug = '';
+
+    if (!empty($query_vars['motorraeder']) && is_string($query_vars['motorraeder'])) {
+        $slug = $query_vars['motorraeder'];
+    } elseif (
+        !empty($query_vars['post_type']) &&
+        'motorraeder' === $query_vars['post_type'] &&
+        !empty($query_vars['name']) &&
+        is_string($query_vars['name'])
+    ) {
+        $slug = $query_vars['name'];
+    }
+
+    if ($slug === '') {
+        return $query_vars;
+    }
+
+    $term = get_term_by('slug', $slug, 'vehicle_condition');
+
+    if (!$term || is_wp_error($term)) {
+        return $query_vars;
+    }
+
+    unset($query_vars['motorraeder'], $query_vars['post_type'], $query_vars['name']);
+
+    $query_vars['vehicle_condition'] = $slug;
+    $query_vars['taxonomy'] = 'vehicle_condition';
+    $query_vars['term'] = $slug;
+
+    return $query_vars;
+}
+
+add_filter('request', 'bsn_racing_route_vehicle_condition_archive');

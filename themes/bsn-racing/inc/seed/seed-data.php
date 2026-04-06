@@ -197,18 +197,6 @@ function bsn_racing_seed_primary_menu(): void
             'key' => 'kontakt',
             'title' => 'Kontakt',
             'url' => '/kontakt/',
-            'children' => [
-                [
-                    'key' => 'kontakt-datenschutz',
-                    'title' => 'Datenschutz',
-                    'url' => '/datenschutz/',
-                ],
-                [
-                    'key' => 'kontakt-impressum',
-                    'title' => 'Impressum',
-                    'url' => '/impressum/',
-                ],
-            ],
         ],
         [
             'key' => 'shop',
@@ -380,5 +368,7 @@ function bsn_racing_delete_obsolete_seeded_menu_items(int $menu_id, array $obsol
         wp_delete_post((int) $menu_item->ID, true);
     }
 }
+// add_action('admin_init', 'bsn_racing_seed_primary_menu');
 
-add_action('admin_init', 'bsn_racing_seed_primary_menu');
+// Menu seeding was useful for first-time setup, but it should not keep
+// overwriting admin-managed menu changes on every admin request.
