@@ -1,0 +1,253 @@
+.inventory-page__hero,
+.inventory-page__filters,
+.inventory-page__groups,
+.inventory-section {
+  padding: clamp(3rem, 7vw, 5.5rem) 0;
+}
+
+.inventory-page__hero {
+  color: #fff;
+  background:
+    linear-gradient(135deg, rgba(17, 27, 37, 0.94) 0%, rgba(32, 67, 79, 0.88) 58%, rgba(181, 116, 40, 0.78) 100%),
+    linear-gradient(135deg, #18242d 0%, #264957 50%, #8f5f28 100%);
+}
+
+.inventory-breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95rem;
+}
+
+.inventory-page__hero-grid,
+.inventory-group__header {
+  display: grid;
+  gap: 2rem;
+}
+
+.inventory-page__hero-grid {
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.75fr);
+  align-items: end;
+}
+
+.inventory-page__hero-copy h1 {
+  margin: 0;
+  font-size: clamp(2.5rem, 6vw, 4.8rem);
+  line-height: 1.02;
+}
+
+.inventory-page__lead {
+  max-width: 58ch;
+  margin: 1.25rem 0 0;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.inventory-page__hero-card,
+.inventory-group,
+.inventory-card,
+.inventory-empty {
+  border: 1px solid var(--bsn-color-border);
+}
+
+.inventory-page__hero-card {
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+}
+
+.inventory-page__eyebrow {
+  margin: 0 0 1rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.inventory-page__stats {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.inventory-page__stats li {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.inventory-page__stats strong {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  line-height: 1;
+}
+
+.inventory-page__stats span {
+  color: rgba(255, 255, 255, 0.74);
+}
+
+.inventory-page__filters {
+  padding-top: 1.5rem;
+  padding-bottom: 0;
+}
+
+.inventory-page__filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+}
+
+.inventory-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.7rem 1rem;
+  border: 1px solid rgba(24, 36, 45, 0.14);
+  color: #18242d;
+  background: #fff;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.inventory-chip--active,
+.inventory-chip:hover,
+.inventory-chip:focus-visible {
+  color: #fff;
+  background: #18242d;
+  border-color: #18242d;
+}
+
+.inventory-groups {
+  display: grid;
+  gap: 2rem;
+}
+
+.inventory-group {
+  padding: 1.75rem;
+  background: #fff;
+}
+
+.inventory-group__header {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  margin-bottom: 1.5rem;
+}
+
+.inventory-group__meta {
+  display: grid;
+  justify-items: end;
+  gap: 0.5rem;
+  color: rgba(22, 22, 22, 0.66);
+  font-size: 0.95rem;
+}
+
+.inventory-group__meta span {
+  font-weight: 700;
+  color: #18242d;
+}
+
+.inventory-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.inventory-card {
+  overflow: hidden;
+  background: #fff;
+}
+
+.inventory-card__media {
+  display: block;
+  min-height: 260px;
+  background: linear-gradient(135deg, #8b7755, #d6c195);
+}
+
+.inventory-card__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.inventory-card__placeholder {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.inventory-card__body {
+  display: grid;
+  gap: 0.85rem;
+  padding: 1.25rem;
+}
+
+.inventory-card__body h3 {
+  margin: 0;
+  line-height: 1.15;
+}
+
+.inventory-card__body p {
+  margin: 0;
+}
+
+.inventory-card__topline {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.inventory-card__condition {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(22, 22, 22, 0.58);
+}
+
+.inventory-card__price {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #18242d;
+}
+
+.inventory-empty {
+  padding: 2rem;
+  background: #fff;
+}
+
+@media (max-width: 960px) {
+  .inventory-page__hero-grid,
+  .inventory-group__header,
+  .inventory-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .inventory-group__meta {
+    justify-items: start;
+  }
+}
+
+@media (max-width: 680px) {
+  .inventory-page__hero-card,
+  .inventory-group,
+  .inventory-empty {
+    padding: 1.25rem;
+  }
+
+  .inventory-card__media {
+    min-height: 220px;
+  }
+}

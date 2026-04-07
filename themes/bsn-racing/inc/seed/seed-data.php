@@ -161,7 +161,7 @@ function bsn_racing_seed_primary_menu(): void
         ],
         [
             'key' => 'bsn',
-            'title' => 'Off Road Shop Metzler',
+            'title' => 'Off Road Metzler',
             'url' => '/offroad-shop-metzler/',
             'children' => [
                 [
@@ -181,6 +181,11 @@ function bsn_racing_seed_primary_menu(): void
             'title' => 'Motorraeder',
             'url' => '/motorraeder/',
             'children' => [
+                [
+                    'key' => 'motorraeder-all',
+                    'title' => 'Alle Motorraeder',
+                    'url' => '/motorraeder/',
+                ],
                 [
                     'key' => 'motorraeder-neu',
                     'title' => 'Neu',
@@ -368,7 +373,17 @@ function bsn_racing_delete_obsolete_seeded_menu_items(int $menu_id, array $obsol
         wp_delete_post((int) $menu_item->ID, true);
     }
 }
-// add_action('admin_init', 'bsn_racing_seed_primary_menu');
 
-// Menu seeding was useful for first-time setup, but it should not keep
-// overwriting admin-managed menu changes on every admin request.
+function bsn_racing_sync_primary_menu_seed(): void
+{
+    if (!is_admin()) {
+        return;
+    }
+
+    bsn_racing_seed_primary_menu();
+}
+
+add_action('admin_init', 'bsn_racing_sync_primary_menu_seed');
+
+// Primary menu seeding now syncs on every admin request so code-level menu
+// changes are reflected immediately for seeded items.
