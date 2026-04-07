@@ -1,4 +1,8 @@
-<?php $bsn_footer_brand_links = function_exists('bsn_racing_get_navbar_brands') ? bsn_racing_get_navbar_brands() : []; ?>
+<?php
+$bsn_footer_brand_links = function_exists('bsn_racing_get_navbar_brands') ? bsn_racing_get_navbar_brands() : [];
+$bsn_umami_src = defined('BSN_UMAMI_SCRIPT_URL') ? (string) BSN_UMAMI_SCRIPT_URL : '';
+$bsn_umami_website_id = defined('BSN_UMAMI_WEBSITE_ID') ? (string) BSN_UMAMI_WEBSITE_ID : '';
+?>
 
 <footer class="site-footer">
   <div class="bsn-container">
@@ -62,6 +66,7 @@
       <div class="site-footer__bottom-right">
         <div class="site-footer__legal">
           <a href="<?php echo esc_url(home_url('/datenschutz/')); ?>">Datenschutz</a>
+          <a href="#" data-cookie-consent-open><?php esc_html_e('Cookie-Einstellungen', 'bsn-racing'); ?></a>
           <a href="<?php echo esc_url(home_url('/impressum/')); ?>">Impressum</a>
         </div>
         
@@ -72,6 +77,27 @@
     </div>
   </div>
 </footer>
+<div
+  class="cookie-consent"
+  data-cookie-consent
+  data-umami-src="<?php echo esc_attr($bsn_umami_src); ?>"
+  data-umami-website-id="<?php echo esc_attr($bsn_umami_website_id); ?>"
+  hidden
+>
+  <div class="cookie-consent__inner">
+    <div class="cookie-consent__copy">
+      <p class="cookie-consent__eyebrow"><?php esc_html_e('Datenschutz', 'bsn-racing'); ?></p>
+      <h2><?php esc_html_e('Externe Inhalte und Statistik erst nach Ihrer Zustimmung.', 'bsn-racing'); ?></h2>
+      <p><?php esc_html_e('Wir verwenden Umami fuer datenschutzfreundliche Besuchsstatistiken und Google Maps fuer die Standortanzeige. Beide Dienste werden erst nach Ihrer Einwilligung geladen.', 'bsn-racing'); ?></p>
+      <p><a href="<?php echo esc_url(home_url('/datenschutz/')); ?>"><?php esc_html_e('Datenschutzerklaerung ansehen', 'bsn-racing'); ?></a></p>
+    </div>
+
+    <div class="cookie-consent__actions">
+      <button class="button button--primary" type="button" data-cookie-consent-accept><?php esc_html_e('Akzeptieren', 'bsn-racing'); ?></button>
+      <button class="button button--secondary" type="button" data-cookie-consent-reject><?php esc_html_e('Ablehnen', 'bsn-racing'); ?></button>
+    </div>
+  </div>
+</div>
 <div class="lightbox" data-lightbox hidden>
   <div class="lightbox__backdrop" data-lightbox-backdrop></div>
   <div class="lightbox__dialog" role="dialog" aria-modal="true" aria-label="<?php esc_attr_e('Image viewer', 'bsn-racing'); ?>">

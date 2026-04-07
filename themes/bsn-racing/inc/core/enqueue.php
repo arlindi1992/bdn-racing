@@ -38,6 +38,13 @@ function bsn_racing_assets(): void
         $theme->get('Version')
     );
 
+    wp_enqueue_style(
+        'bsn-racing-cookies',
+        get_template_directory_uri() . '/assets/css/cookies.css',
+        ['bsn-racing-main'],
+        $theme->get('Version')
+    );
+
     if (is_page()) {
         wp_enqueue_style(
             'bsn-racing-page',
@@ -47,10 +54,28 @@ function bsn_racing_assets(): void
         );
     }
 
-    if (is_home() || is_archive()) {
+    if (is_page('kontakt')) {
+        wp_enqueue_style(
+            'bsn-racing-contact-form',
+            get_template_directory_uri() . '/assets/css/contact-form.css',
+            ['bsn-racing-page'],
+            $theme->get('Version')
+        );
+    }
+
+    if (is_home() || (is_archive() && !is_post_type_archive('motorraeder') && !is_tax('vehicle_condition'))) {
         wp_enqueue_style(
             'bsn-racing-news',
             get_template_directory_uri() . '/assets/css/news.css',
+            ['bsn-racing-main'],
+            $theme->get('Version')
+        );
+    }
+
+    if (is_post_type_archive('motorraeder') || is_tax('vehicle_condition') || is_singular('motorraeder')) {
+        wp_enqueue_style(
+            'bsn-racing-motorraeder',
+            get_template_directory_uri() . '/assets/css/motorraeder.css',
             ['bsn-racing-main'],
             $theme->get('Version')
         );
@@ -60,7 +85,7 @@ function bsn_racing_assets(): void
         wp_enqueue_style(
             'bsn-racing-vehicle-single',
             get_template_directory_uri() . '/assets/css/vehicle-single.css',
-            ['bsn-racing-main'],
+            ['bsn-racing-motorraeder'],
             $theme->get('Version')
         );
     }

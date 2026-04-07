@@ -1,8 +1,161 @@
 'use strict';
 
-document.addEventListener('DOMContentLoaded', () => {
-  const triggers = Array.from(document.querySelectorAll('[data-lightbox-src]'));
+const CONSENT_KEY = 'bsnConsent';
+const CONSENT_ACCEPTED = 'accepted';
+const CONSENT_REJECTED = 'rejected';
 
+const getConsentState = () => window.localStorage.getItem(CONSENT_KEY);
+
+const setConsentState = (value) => {
+  window.localStorage.setItem(CONSENT_KEY, value);
+  document.documentElement.dataset.consentState = value;
+};
+
+const loadUmami = (banner) => {
+  if (!banner || document.querySelector('script[data-bsn-umami]')) {
+    return;
+  }
+
+  const src = banner.dataset.umamiSrc || '';
+  const websiteId = banner.dataset.umamiWebsiteId || '';
+
+  if (!src || !websiteId) {
+    return;
+  }
+
+  const script = document.createElement('script');
+  script.defer = true;
+  script.dataset.websiteId = websiteId;
+  script.dataset.bsnUmami = 'true';
+  script.src = src;
+  document.head.appendChild(script);
+};
+
+const unloadUmami = () => {
+  const script = document.querySelector('script[data-bsn-umami]');
+  if (script) {
+    script.remove();
+  }
+
+  if ('umami' in window) {
+    try {
+      delete window.umami;
+    } catch (error) {
+      window.umami = undefined;
+    }
+  }
+};
+
+const activateMaps = () => {
+  const mapWrappers = Array.from(document.querySelectorAll('[data-consent-map]'));
+
+  mapWrappers.forEach((wrapper) => {
+    if (wrapper.dataset.mapLoaded === 'true') {
+      return;
+    }
+
+    const src = wrapper.dataset.mapSrc || '';
+    const title = wrapper.dataset.mapTitle || 'Google Maps';
+
+    if (!src) {
+      return;
+    }
+
+    const iframe = document.createElement('iframe');
+    iframe.className = 'contact-page__map';
+    iframe.src = src;
+    iframe.loading = 'lazy';
+    iframe.referrerPolicy = 'no-referrer-when-downgrade';
+    iframe.allowFullscreen = true;
+    iframe.title = title;
+
+    wrapper.innerHTML = '';
+    wrapper.appendChild(iframe);
+    wrapper.dataset.mapLoaded = 'true';
+  });
+};
+
+const deactivateMaps = () => {
+  const mapWrappers = Array.from(document.querySelectorAll('[data-consent-map]'));
+
+  mapWrappers.forEach((wrapper) => {
+    const placeholderHtml = wrapper.dataset.placeholderHtml || '';
+
+    if (!placeholderHtml) {
+      return;
+    }
+
+    wrapper.innerHTML = placeholderHtml;
+    wrapper.dataset.mapLoaded = 'false';
+  });
+};
+
+const applyConsentState = (state, banner) => {
+  document.documentElement.dataset.consentState = state || '';
+
+  if (state === CONSENT_ACCEPTED) {
+    loadUmami(banner);
+    activateMaps();
+  }
+
+  if (state === CONSENT_REJECTED) {
+    unloadUmami();
+    deactivateMaps();
+  }
+
+  if (banner) {
+    banner.hidden = state !== null;
+  }
+};
+
+const initConsent = () => {
+  const banner = document.querySelector('[data-cookie-consent]');
+  if (!banner) {
+    return;
+  }
+
+  const acceptButton = banner.querySelector('[data-cookie-consent-accept]');
+  const rejectButton = banner.querySelector('[data-cookie-consent-reject]');
+  const openButtons = Array.from(document.querySelectorAll('[data-cookie-consent-open]'));
+  const mapAcceptButtons = Array.from(document.querySelectorAll('[data-consent-map-accept]'));
+  const mapWrappers = Array.from(document.querySelectorAll('[data-consent-map]'));
+  const storedConsent = getConsentState();
+
+  mapWrappers.forEach((wrapper) => {
+    if (!wrapper.dataset.placeholderHtml) {
+      wrapper.dataset.placeholderHtml = wrapper.innerHTML;
+    }
+  });
+
+  applyConsentState(storedConsent, banner);
+
+  acceptButton?.addEventListener('click', () => {
+    setConsentState(CONSENT_ACCEPTED);
+    applyConsentState(CONSENT_ACCEPTED, banner);
+  });
+
+  rejectButton?.addEventListener('click', () => {
+    setConsentState(CONSENT_REJECTED);
+    applyConsentState(CONSENT_REJECTED, banner);
+  });
+
+  openButtons.forEach((button) => {
+    button.addEventListener('click', (event) => {
+      event.preventDefault();
+      banner.hidden = false;
+    });
+  });
+
+  mapAcceptButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      setConsentState(CONSENT_ACCEPTED);
+      applyConsentState(CONSENT_ACCEPTED, banner);
+    });
+  });
+};
+
+const initLightbox = () => {
+  const triggers = Array.from(document.querySelectorAll('[data-lightbox-src]'));
   if (!triggers.length) {
     return;
   }
@@ -93,4 +246,9 @@ document.addEventListener('DOMContentLoaded', () => {
       step(1);
     }
   });
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  initConsent();
+  initLightbox();
 });
