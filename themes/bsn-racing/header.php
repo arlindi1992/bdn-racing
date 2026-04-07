@@ -39,6 +39,7 @@
     </div>
 
     <?php get_template_part('template-parts/header/navbar'); ?>
-    <?php get_template_part('template-parts/header/brands-strip'); ?>
   </div>
+
+  <?php get_template_part('template-parts/header/brands-strip'); ?>
 </header>

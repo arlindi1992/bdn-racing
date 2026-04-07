@@ -232,6 +232,13 @@
   will-change: transform;
 }
 
+.brands-strip__group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 0 0 auto;
+}
+
 .brands-strip:hover .brands-strip__track,
 .brands-strip:focus-within .brands-strip__track {
   animation-play-state: paused;
