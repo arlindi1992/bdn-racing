@@ -4,6 +4,7 @@
   <?php while (have_posts()) : the_post(); ?>
     <?php
     $page_intro = has_excerpt() ? get_the_excerpt() : '';
+    $page_content_class = 'page-content';
     ?>
 
     <section class="page-hero">
@@ -38,7 +39,7 @@
         </div>
 
         <article <?php post_class('page-content-card'); ?>>
-          <div class="page-content">
+          <div class="<?php echo esc_attr($page_content_class); ?>">
             <?php the_content(); ?>
           </div>
         </article>
