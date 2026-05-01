@@ -85,9 +85,9 @@
   width: 52px;
   height: 52px;
   padding: 0;
-  color: var(--bsn-color-text);
-  background: linear-gradient(180deg, #fff 0%, #f4f6f8 100%);
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  color: #fff;
+  background: var(--bsn-color-teal-strong);
+  border: 1px solid rgba(78, 179, 176, 0.45);
   border-radius: 999px;
   box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
   cursor: pointer;
@@ -96,7 +96,7 @@
 
 .site-navigation__menu-toggle:hover,
 .site-navigation__menu-toggle:focus-visible {
-  border-color: rgba(0, 0, 0, 0.18);
+  border-color: rgba(46, 143, 140, 0.7);
   box-shadow: 0 14px 30px rgba(15, 23, 42, 0.12);
 }
 
@@ -142,13 +142,15 @@
   display: inline-flex;
   align-items: center;
   min-height: 48px;
+  padding: 0;
+  background: transparent;
+  transition: color 0.2s ease;
 }
 
 .site-navigation__menu > li > a:hover,
 .site-navigation__menu > li > a:focus-visible,
-.site-navigation__menu > .current-menu-item > a,
-.site-navigation__menu > .current-menu-ancestor > a {
-  color: var(--bsn-color-accent);
+.site-navigation__menu > .current-menu-item > a {
+  color: var(--bsn-color-teal-strong);
 }
 
 .site-navigation__toggle {
@@ -209,7 +211,17 @@
 
 .site-navigation .sub-menu a:hover,
 .site-navigation .sub-menu a:focus-visible {
-  background: var(--bsn-color-surface);
+  background: var(--bsn-color-teal-strong);
+  padding-left: 0.5rem;
+  color: #fff;
+  font-weight: 700;
+}
+
+.site-navigation .sub-menu .current-menu-item > a,
+.site-navigation .sub-menu .current-page-ancestor > a,
+.site-navigation .sub-menu .current-page-item > a {
+  background: var(--bsn-color-teal-strong);
+  color: #fff;
 }
 
 .site-navigation li.is-open > .sub-menu {
@@ -252,7 +264,7 @@
   min-height: 60px;
   padding: 0.75rem 1rem;
   background: rgba(255, 255, 255, 0.92);
-  border: 1px solid var(--bsn-color-border);
+  border: 1px solid rgba(78, 179, 176, 0.38);
   flex: 0 0 auto;
 }
 
@@ -337,7 +349,7 @@
 
   .site-navigation__menu > li {
     width: 100%;
-    border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+    border-bottom: 1px solid rgba(78, 179, 176, 0.38);
   }
 
   .site-navigation__menu > li:last-child {

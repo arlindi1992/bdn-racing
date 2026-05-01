@@ -1,11 +1,28 @@
 <?php get_header(); ?>
 
+<?php
+$posts_page_id = (int) get_option('page_for_posts');
+$posts_page_title = get_the_title($posts_page_id) ?: __('News', 'bsn-racing');
+$posts_page_image_id = $posts_page_id ? (int) get_post_thumbnail_id($posts_page_id) : 0;
+?>
+
 <main class="site-main news-page">
-  <section class="news-page__hero">
-    <div class="bsn-container">
-      <p class="section-kicker">Aktuelles</p>
-      <h1><?php echo esc_html(get_the_title((int) get_option('page_for_posts')) ?: __('News', 'bsn-racing')); ?></h1>
-      <p class="news-page__intro"><?php esc_html_e('Neuigkeiten aus Werkstatt, Szene, Service und Saisonstart.', 'bsn-racing'); ?></p>
+  <section class="page-hero news-page__hero">
+    <div class="page-hero__media">
+      <?php if ($posts_page_image_id) : ?>
+        <?php echo wp_get_attachment_image($posts_page_image_id, 'full'); ?>
+      <?php else : ?>
+        <div class="page-hero__fallback"></div>
+      <?php endif; ?>
+
+      <div class="page-hero__overlay">
+        <div class="bsn-container page-hero__inner">
+          <div class="page-hero__content">
+            <p class="section-kicker section-kicker--light">Aktuelles</p>
+            <h1><?php echo esc_html($posts_page_title); ?></h1>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 

@@ -4,16 +4,7 @@
 }
 
 .news-page__hero {
-  color: #fff;
-  background: linear-gradient(135deg, #0f1720 0%, #1f3d4b 55%, #326c6b 100%);
-}
-
-.news-page__intro {
-  max-width: 720px;
-  margin: 1rem 0 0;
-  font-size: 1.05rem;
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.88);
+  padding: 0;
 }
 
 .news-list {

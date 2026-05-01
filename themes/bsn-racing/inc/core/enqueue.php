@@ -45,7 +45,7 @@ function bsn_racing_assets(): void
         $theme->get('Version')
     );
 
-    if (is_page()) {
+    if (is_page() || is_home()) {
         wp_enqueue_style(
             'bsn-racing-page',
             get_template_directory_uri() . '/assets/css/page.css',

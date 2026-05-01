@@ -1,13 +1,14 @@
 :root {
   --bsn-color-bg: #fff;
   --bsn-color-text: #161616;
-  --bsn-color-accent: #b44c2f;
-  --bsn-color-accent-dark: #8f3820;
+  --bsn-color-accent: #4eb3b0;
+  --bsn-color-accent-dark: #2e8f8c;
   --bsn-color-surface: #fbf7f0;
   --bsn-color-surface-strong: #ebe3d5;
   --bsn-color-border: #d7cebe;
   --bsn-color-dark: #242424;
   --bsn-color-teal: #4eb3b0;
+  --bsn-color-teal-strong: #2e8f8c;
   --bsn-container: 1200px;
   --p-color: #242424;;
 
@@ -325,7 +326,7 @@ img {
 
 .product-card {
   overflow: hidden;
-  border: 2px solid rgba(180, 76, 47, 0.9);
+  border: 2px solid rgba(78, 179, 176, 0.9);
   background: #2a2a2a;
 }
 
@@ -336,7 +337,7 @@ img {
 
 .product-card--light {
   background: var(--bsn-color-bg);
-  border-color: rgba(180, 76, 47, 0.4);
+  border-color: rgba(78, 179, 176, 0.4);
 }
 
 .product-card--text {
@@ -360,7 +361,7 @@ img {
 .product-card__price {
   margin: 0.75rem 0 0;
   font-weight: 700;
-  color: #f5aa5e;
+  color: var(--bsn-color-teal-strong);
 }
 
 .text-link {
@@ -371,7 +372,7 @@ img {
 }
 
 .text-link--accent {
-  color: #f5aa5e;
+  color: var(--bsn-color-teal-strong);
 }
 
 .image-tile {

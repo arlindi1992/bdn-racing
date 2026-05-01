@@ -32,7 +32,7 @@
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--bsn-color-accent);
+  color: var(--bsn-color-teal);
 }
 
 .site-footer__bottom {
