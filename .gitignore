@@ -6,5 +6,6 @@ uploads/
 *.Zone.Identifier
 .DS_Store
 
-plugins/contact-form-7
-plugins/flamingo
+plugins/contact-form-7/
+plugins/flamingo/
+plugins/akismet/
