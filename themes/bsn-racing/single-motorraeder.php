@@ -48,7 +48,7 @@
         ['label' => __('Tank', 'bsn-racing'), 'value' => $tank_capacity],
     ], static fn ($item) => !empty($item['value'])));
 
-    $lead_text = get_the_excerpt() ?: $subtitle;
+    $lead_text = has_excerpt() ? get_the_excerpt() : '';
     $has_main_content = trim((string) get_the_content()) !== '';
 
     $related_models = new WP_Query([
@@ -87,14 +87,9 @@
         <div class="vehicle-single__content-card">
           <?php if ($brand_logo && !empty($brand_logo['ID'])) : ?>
             <div class="vehicle-single__brand">
-              <?php echo wp_get_attachment_image($brand_logo['ID'], 'medium'); ?>
+              <?php echo wp_get_attachment_image($brand_logo['ID'], 'full'); ?>
             </div>
           <?php endif; ?>
-
-          <div class="section-heading section-heading--stacked">
-            <p class="section-kicker"><?php esc_html_e('Modellueberblick', 'bsn-racing'); ?></p>
-            <h2><?php esc_html_e('Fokus auf Fahrgefuehl, Einsatzbereich und Charakter.', 'bsn-racing'); ?></h2>
-          </div>
 
           <?php if ($subtitle || $lead_text) : ?>
             <div class="vehicle-single__intro-text">
