@@ -155,6 +155,11 @@ function bsn_racing_seed_primary_menu(): void
     // Kjo eshte struktura e meny-se qe do te krijohet nese nuk ekziston; gjithashtu perdoret per te upsert-uar itemet e meny-se ne meny-n ekzistuese, bazuar ne title, url dhe parent_id (per te shmangur duplikimet ne cdo rrun)
     $items = [
         [
+            'key' => 'home',
+            'title' => 'Home',
+            'url' => '/',
+        ],
+        [
             'key' => 'news',
             'title' => 'News',
             'url' => '/news/',

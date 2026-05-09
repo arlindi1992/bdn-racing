@@ -9,6 +9,9 @@
           ?>
           <ul id="site-navigation-menu" class="site-navigation__menu">
             <li class="menu-item">
+              <a href="<?php echo esc_url(home_url('/')); ?>">Home</a>
+            </li>
+            <li class="menu-item">
               <a href="<?php echo esc_url(home_url('/news/')); ?>">News</a>
             </li>
             <li class="menu-item menu-item-has-children">

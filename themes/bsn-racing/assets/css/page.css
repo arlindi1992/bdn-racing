@@ -190,7 +190,6 @@
 .page-content h2 + p,
 .page-content h3 + p,
 .page-content h4 + p {
-  max-width: 42rem;
   padding: 0.8rem 0.95rem;
   background: #eef8f7;
   border-left: 3px solid var(--bsn-color-teal);
@@ -202,7 +201,6 @@
 .page-content h2 + p + p + p,
 .page-content h3 + p + p + p,
 .page-content h4 + p + p + p {
-  max-width: 42rem;
   margin-top: -0.2rem;
   padding: 0 0.95rem 0.8rem;
   background: #eef8f7;
