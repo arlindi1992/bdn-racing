@@ -108,7 +108,8 @@ $total_inventory = (int) wp_count_posts('motorraeder')->publish;
                     <?php
                     $price = function_exists('get_field') ? (string) get_field('price') : '';
                     $subtitle = function_exists('get_field') ? (string) get_field('subtitle') : '';
-                    $card_excerpt = get_the_excerpt() ?: $subtitle ?: wp_trim_words(get_the_content(), 22);
+                    $card_excerpt_source = get_the_excerpt() ?: $subtitle ?: get_the_content();
+                    $card_excerpt = wp_trim_words(wp_strip_all_tags($card_excerpt_source), 15, '...');
                     ?>
                     <article <?php post_class('inventory-card'); ?>>
                       <a class="inventory-card__media" href="<?php the_permalink(); ?>">
@@ -149,7 +150,8 @@ $total_inventory = (int) wp_count_posts('motorraeder')->publish;
             <?php
             $price = function_exists('get_field') ? (string) get_field('price') : '';
             $subtitle = function_exists('get_field') ? (string) get_field('subtitle') : '';
-            $card_excerpt = get_the_excerpt() ?: $subtitle ?: wp_trim_words(get_the_content(), 22);
+            $card_excerpt_source = get_the_excerpt() ?: $subtitle ?: get_the_content();
+            $card_excerpt = wp_trim_words(wp_strip_all_tags($card_excerpt_source), 15, '...');
             ?>
             <article <?php post_class('inventory-card'); ?>>
               <a class="inventory-card__media" href="<?php the_permalink(); ?>">
