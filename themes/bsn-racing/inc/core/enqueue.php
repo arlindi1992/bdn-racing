@@ -54,7 +54,7 @@ function bsn_racing_assets(): void
         );
     }
 
-    if (is_page('kontakt')) {
+    if (is_page('kontakt') || is_page('probefahrt')) {
         wp_enqueue_style(
             'bsn-racing-contact-form',
             get_template_directory_uri() . '/assets/css/contact-form.css',
